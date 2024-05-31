@@ -1,8 +1,8 @@
 [meta]
-  title = "NextJS Live Transcript with Deepgram"
-  description = "Basic demo for using Deepgram to transcribe microphone audio in Next.js"
+  title = "Text to speech with Next.js"
+  description = "Basic text to speech demo using Deepgram and Next.js"
   author = "Deepgram DX Team <devrel@deepgram.com> (https://developers.deepgram.com)"
-  useCase = "Live"
+  useCase = "TTS"
   language = "JavaScript"
   framework = "Next.js"
 
