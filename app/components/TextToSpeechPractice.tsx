@@ -7,7 +7,39 @@ interface TextToSpeechPracticeProps {
   imageSrc: string;
 }
 
+
+const playAudio = (audioBlob: Blob, mimeType: string) => {
+    const audioUrl = URL.createObjectURL(audioBlob);
+    const audio = new Audio(audioUrl);
+    audio.play();
+};
+
 const TextToSpeechPractice: React.FC<TextToSpeechPracticeProps> = ({ title, content, imageSrc }) => {
+    const onClickPlay = async () => {
+        // stopAudio();
+
+        const model = "aura-arcas-en";
+
+        try {
+            const response = await fetch(`/api/speak?model=${model}`, {
+                cache: "no-store",
+                method: "POST",
+                body: JSON.stringify({ text: content }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // stopAudio();
+            // setText("");
+
+            const audioBlob = await response.blob();
+            playAudio(audioBlob, "audio/mp3");
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    };
   return (
     <section className="self-center mt-20 w-full max-w-[1093px] max-md:mt-10 max-md:max-w-full">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -22,7 +54,9 @@ const TextToSpeechPractice: React.FC<TextToSpeechPracticeProps> = ({ title, cont
             <p className="mt-6 text-xl tracking-wide leading-8 text-gray-800 max-md:max-w-full">
               {content}
             </p>
-            <button className="flex gap-2 justify-center self-end px-7 py-4 mt-4 text-lg font-semibold leading-7 text-white whitespace-nowrap rounded-xl border border-indigo-200 border-solid bg-[linear-gradient(129deg,#387DFD_-10.26%,#54DFFF_112.89%)] max-md:px-5">
+            <button className="flex gap-2 justify-center self-end px-7 py-4 mt-4 text-lg font-semibold leading-7 text-white whitespace-nowrap rounded-xl border border-indigo-200 border-solid bg-[linear-gradient(129deg,#387DFD_-10.26%,#54DFFF_112.89%)] max-md:px-5"
+                    onClick={onClickPlay}
+            >
               <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/40a406e54f7dbf5db628d2fc28818d5479e0099581bea8652f9c8defa46ce740?apiKey=77b62c40fd614058a947b296977bcb29&" alt="" className="shrink-0 my-auto aspect-[0.9] fill-white w-[18px]" />
               <span>Play</span>
             </button>
