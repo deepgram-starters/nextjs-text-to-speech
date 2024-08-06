@@ -42,7 +42,7 @@ const Controls = ({
       playAudio(await response.blob(), "audio/mp3");
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [text]
+    [text],
   );
 
   return (
