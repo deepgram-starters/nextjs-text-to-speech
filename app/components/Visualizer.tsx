@@ -5,12 +5,12 @@ type AudioInput = MediaStream | HTMLAudioElement;
 const interpolateColor = (
   startColor: number[],
   endColor: number[],
-  factor: number
+  factor: number,
 ): number[] => {
   const result = [];
   for (let i = 0; i < startColor.length; i++) {
     result[i] = Math.round(
-      startColor[i] + factor * (endColor[i] - startColor[i])
+      startColor[i] + factor * (endColor[i] - startColor[i]),
     );
   }
   return result;
@@ -27,6 +27,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ source, context }) => {
   if (!context) {
     context = new (window.AudioContext || window.webkitAudioContext)();
   }
+
   const analyser = context.createAnalyser();
   const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
@@ -34,9 +35,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ source, context }) => {
     let audioSource: AudioNode;
 
     if (source instanceof MediaStream) {
-      audioSource = context.createMediaStreamSource(source);
+      audioSource = context!.createMediaStreamSource(source);
     } else {
-      audioSource = context.createMediaElementSource(source);
+      audioSource = context!.createMediaElementSource(source);
+      audioSource.connect(context!.destination);
     }
 
     audioSource.connect(analyser);

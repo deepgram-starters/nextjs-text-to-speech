@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   response.headers.set("Surrogate-Control", "no-store");
   response.headers.set(
     "Cache-Control",
-    "s-maxage=0, no-store, no-cache, must-revalidate, proxy-revalidate"
+    "s-maxage=0, no-store, no-cache, must-revalidate, proxy-revalidate",
   );
   response.headers.set("Expires", "0");
 
