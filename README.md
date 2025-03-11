@@ -1,4 +1,4 @@
-# Next.js Text-to-speech Starter
+# Next.js Text-to-Speech Starter
 
 [![Discord](https://dcbadge.vercel.app/api/server/xWRaCDBtW4?style=flat)](https://discord.gg/xWRaCDBtW4)
 
