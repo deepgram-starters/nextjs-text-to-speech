@@ -1,6 +1,6 @@
 [meta]
-  title = "Text-to-speech Next.js Starter"
-  description = "Basic text to speech demo using Deepgram and Next.js"
+  title = "Next.js Text-to-Speech Starter"
+  description = "Get started using Deepgram's Text-to-Speech with this Next.js demo app"
   author = "Deepgram DX Team <devrel@deepgram.com> (https://developers.deepgram.com)"
   useCase = "TTS"
   language = "JavaScript"
