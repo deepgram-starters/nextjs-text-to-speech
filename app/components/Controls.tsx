@@ -28,7 +28,7 @@ const Controls = ({
 
       stopAudio();
 
-      const model = "aura-asteria-en";
+      const model = "aura-2-thalia-en";
 
       const response = await fetch(`/api/speak?model=${model}`, {
         cache: "no-store",
