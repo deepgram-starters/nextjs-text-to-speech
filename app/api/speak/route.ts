@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
   const url = request.url;
   const deepgram = createClient(process.env.DEEPGRAM_API_KEY ?? "");
 
-  const model = request.nextUrl.searchParams.get("model") ?? "aura-asteria-en";
+  const model = request.nextUrl.searchParams.get("model") ?? "aura-2-thalia-en";
   const message = await request.json();
 
   console.log(model, message);
