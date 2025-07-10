@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
   const url = request.url;
   const deepgram = createClient(process.env.DEEPGRAM_API_KEY ?? "");
 
-  // Get the voice model from query params, default to aura-asteria-en
-  const model = request.nextUrl.searchParams.get("model") ?? "aura-asteria-en";
+  // Get the voice model from query params, default to aura-2-thalia-en
+  const model = request.nextUrl.searchParams.get("model") ?? "aura-2-thalia-en";
 
   // Get the text from request body
   const message = await request.json();

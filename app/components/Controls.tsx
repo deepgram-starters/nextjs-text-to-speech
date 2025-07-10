@@ -67,7 +67,7 @@ const Controls: React.FC<ControlsProps> = ({ callback }) => {
       // ============================================
       const audio = await textToSpeech({
         text,
-        model: "aura-asteria-en", // You can make this configurable
+        model: "aura-2-thalia-en", // You can make this configurable
       });
 
       // Clear the text input after successful conversion
