@@ -1,16 +1,32 @@
 import React, { useEffect, useRef } from "react";
 
+/**
+ * Audio Visualizer Component
+ *
+ * This component creates an animated visualization that responds to audio playback.
+ * It uses the Web Audio API to analyze audio frequencies and render them as bars.
+ *
+ * To remove the visualizer:
+ * 1. Delete this file
+ * 2. Remove the Visualizer import and component from App.tsx
+ * 3. Remove the audio context state management from App.tsx
+ *
+ * Dependencies:
+ * - Requires an AudioContext (created in Controls.tsx)
+ * - Requires an audio source (HTMLAudioElement from react-nowplaying)
+ */
+
 type AudioInput = MediaStream | HTMLAudioElement;
 
 const interpolateColor = (
   startColor: number[],
   endColor: number[],
-  factor: number,
+  factor: number
 ): number[] => {
   const result = [];
   for (let i = 0; i < startColor.length; i++) {
     result[i] = Math.round(
-      startColor[i] + factor * (endColor[i] - startColor[i]),
+      startColor[i] + factor * (endColor[i] - startColor[i])
     );
   }
   return result;
@@ -72,8 +88,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ source, context }) => {
 
     const barWidth = 10;
     let x = 0;
-    const startColor = [19, 239, 147];
-    const endColor = [20, 154, 251];
+
+    // Gradient colors matching the Deepgram brand
+    const startColor = [19, 239, 147]; // Green
+    const endColor = [20, 154, 251]; // Blue
 
     for (const value of dataArray) {
       const barHeight = (value / 255) * height * 2;
