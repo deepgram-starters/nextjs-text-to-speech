@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 
 import { SendIcon } from "./icons/SendIcon";
-import { useNowPlaying } from "react-nowplaying";
+import { useNowPlaying } from "../context/NowPlayingContext";
 
 // ============================================
 // FEATURE: Text Input

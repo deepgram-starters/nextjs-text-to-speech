@@ -19,9 +19,19 @@ export const textToSpeech = async ({
     text,
     model = "aura-2-thalia-en"
 }: TextToSpeechOptions): Promise<Blob> => {
-    const response = await fetch(`/api/speak?model=${model}`, {
+    const sessionResponse = await fetch("/api/session", { cache: "no-store" });
+    if (!sessionResponse.ok) {
+        throw new Error(`Unable to start a session: ${sessionResponse.statusText}`);
+    }
+
+    const { token } = await sessionResponse.json();
+    const response = await fetch(`/api/text-to-speech?model=${model}`, {
         cache: "no-store",
         method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
         body: JSON.stringify({ text }),
     });
 
@@ -120,4 +130,4 @@ export const DEEPGRAM_MODELS = {
     ...DEEPGRAM_AURA1_EN_MODELS,
 } as const;
 
-export type DeepgramModel = keyof typeof DEEPGRAM_MODELS; 
+export type DeepgramModel = keyof typeof DEEPGRAM_MODELS;
