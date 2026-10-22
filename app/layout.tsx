@@ -1,10 +1,10 @@
 import { Inter } from "next/font/google";
-import { NowPlayingContextProvider } from "react-nowplaying";
 import classNames from "classnames";
 import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
+import { NowPlayingContextProvider } from "./context/NowPlayingContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const favorit = localFont({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useNowPlaying } from "react-nowplaying";
+import { useNowPlaying } from "../context/NowPlayingContext";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -19,7 +19,7 @@ const Controls = dynamic(() => import("./Controls"), {
   ssr: false,
 });
 
-const App: () => JSX.Element = () => {
+const App = () => {
   // Audio context is only needed if you're using the Visualizer
   // If you remove the Visualizer, you can also remove this state
   const [context, setContext] = useState<AudioContext>();
