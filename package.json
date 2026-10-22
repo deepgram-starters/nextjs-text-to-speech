@@ -4,13 +4,13 @@
   "private": true,
   "packageManager": "pnpm@10.0.0",
   "engines": {
-    "node": ">=20.9.0",
+    "node": ">=24.0.0",
     "pnpm": ">=10.0.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 8081",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --port ${PORT:-8081}",
     "test": "next build"
   },
   "dependencies": {

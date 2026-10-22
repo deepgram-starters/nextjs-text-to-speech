@@ -1,27 +1,30 @@
 # Next.js Text-to-Speech
 
-Get started using Deepgram's Text-to-Speech with this Next.js demo app.
+This starter serves the pinned `text-to-speech-html` frontend as its user interface. Next.js is an API-only backend and keeps `DEEPGRAM_API_KEY` on the server.
 
-<!-- [**Live Demo →**](https://nextjs-text-to-speech-seven.vercel.app/) -->
+## Architecture
 
-## Quick Start
-
-Click the button below to fork the repo:
-
-[![Fork on GitHub](https://img.shields.io/badge/Fork_on_GitHub-blue?logo=github)](https://github.com/deepgram-devs/nextjs-text-to-speech/fork)
+- `frontend/` is the shared Vite frontend, served at `http://localhost:8080` in development.
+- Next.js serves `GET /api/session`, `GET /api/metadata`, and `POST /api/text-to-speech` at `http://localhost:8081`.
+- In production, Caddy serves `frontend/dist` and proxies `/api/*` to Next.js on port 8081.
 
 ## Local Development
 
-```bash
-git clone https://github.com/deepgram-devs/nextjs-text-to-speech.git
-cd nextjs-text-to-speech
-npm install
-cp sample.env.local .env.local  # Add your DEEPGRAM_API_KEY
-npm run dev
+```sh
+git submodule update --init --recursive
+corepack pnpm install --frozen-lockfile
+cd frontend && corepack pnpm install --frozen-lockfile && cd ..
+cp sample.env.local .env.local
+# Set DEEPGRAM_API_KEY in .env.local
+make start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open http://localhost:8080. To build both production artifacts, run `make build`.
+
+## Production
+
+Build with `docker build -f deploy/Dockerfile -t nextjs-text-to-speech .`. The container exposes Caddy on port 8080 and runs the API backend internally on port 8081.
 
 ## License
 
-MIT - See [LICENSE](./LICENSE)
+MIT - See [LICENSE](./LICENSE).
