@@ -1,6 +1,4 @@
 import { Inter } from "next/font/google";
-import { NowPlayingContextProvider } from "react-nowplaying";
-import classNames from "classnames";
 import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
 
@@ -37,12 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-dvh">
       <body
-        className={`h-full dark ${classNames(
-          favorit.variable,
-          inter.className
-        )}`}
+        className={`h-full dark ${favorit.variable} ${inter.className}`}
       >
-        <NowPlayingContextProvider>{children}</NowPlayingContextProvider>
+        {children}
       </body>
     </html>
   );
